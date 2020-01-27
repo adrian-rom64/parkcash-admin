@@ -13,9 +13,9 @@ const Login = () => {
     <div className='login'>
       <div className='login-box'>
         <Card>
-          <InputText placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-          <InputText placeholder='Password' type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <Button label='Log in'/>
+          <InputText placeholder={global.tr('username')} value={username} onChange={(e) => setUsername(e.target.value)}/>
+          <InputText placeholder={global.tr('password')} type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <Button label={global.tr('login-button')} />
         </Card>
       </div>
     </div>

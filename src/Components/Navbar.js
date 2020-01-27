@@ -8,11 +8,11 @@ const Navbar = props => {
 		<React.Fragment>
 			<div className='navbar'>
 				<div className='navbar-left'>
-					<div className='navbar-logo'>Blockchaincars</div>
+					<div className='navbar-logo'>{global.tr('app-name')}</div>
 				</div>
 				<div className='navbar-right'>
 					<div className='navbar-buttons'>
-						{props.loggedIn ? <Button label='Log out' className='p-button-secondary'/> : <Button label='Log in' />}
+						{props.loggedIn ? <Button label={global.tr('logout')} className='p-button-secondary'/> : <Button label={global.tr('login')} />}
 					</div>
 				</div>
 			</div>

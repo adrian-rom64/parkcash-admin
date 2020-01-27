@@ -3,11 +3,11 @@ import Axios from 'axios'
 class Api {
   constructor () {
 
-    this.url = 'http://localhost:3000'
+    this.apiUrl = process.env.API_URL
     this.token = 'dgfdgdfsg'
 
     this.axios = Axios.create({
-      baseURL: this.url,
+      baseURL: this.apiUurl,
       timeout: 10000,
       headers: {Authorization: `Bearer ${this.token}`, 'Content-type': 'application/json'}
     })
