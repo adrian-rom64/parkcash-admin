@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../Styles/Login.css'
 import {InputText} from 'primereact/inputtext'
 import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
+import {withRouter} from 'react-router'
 
-const Login = () => {
+const Login = props => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    props.history.push('/login')
+  }, []) // eslint-disable-line
 
   return ( 
     <div className='login'>
@@ -22,4 +27,4 @@ const Login = () => {
    )
 }
  
-export default Login
+export default withRouter(Login)

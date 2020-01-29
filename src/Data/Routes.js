@@ -1,5 +1,5 @@
-import Login from '../Views/Login'
+import Users from '../Views/Users'
 
 export default [
-  {path: '/login', exact: true, component: Login}
+  {path: '/users', exact: true, component: Users, guard: true}
 ]

@@ -1,14 +1,33 @@
 import React from 'react'
-import {Tree} from 'primereact/tree'
-import data from '../Data/MenuData'
+import {withRouter} from 'react-router'
 import '../Styles/Menu.css'
+import {Menu} from 'primereact/menu'
 
-const Menu = () => {
+const SideMenu = props => {
+
+  const goto = path => props.history.push(path)
+
+  const items = [
+    {
+      label: 'Assets',
+      items: [
+        {label: 'Users', command: () => goto('/users')},
+        {label: 'Cars', command: () => goto('/cars')}
+      ]
+    },
+    {
+      label: 'Account',
+      items: [
+        {label: 'Log out', command: () => goto('/logout')}
+      ]
+    }
+  ]
+
   return ( 
     <div className='menu'>
-      <Tree value={data}/>
+      <Menu model={items} />
     </div>
    )
 }
- 
-export default Menu
+
+export default withRouter(SideMenu)
