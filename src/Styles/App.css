@@ -2,7 +2,8 @@
   --primary-color: #007ad9;
 }
 .view-container {
-  width: 75%;
-  float: right;
+  display: inline-block;
+  width: calc(100% - 250px);
+  min-width: 250px;
   padding: 20px;
 }

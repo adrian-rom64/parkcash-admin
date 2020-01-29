@@ -3,22 +3,25 @@ import PropTypes from 'prop-types'
 import {TabMenu} from 'primereact/tabmenu'
 import IndexView from './IndexView'
 import '../Styles/Asset.css'
+import Loading from './Loading'
 
 const Asset = props => {
 
   const [view, setView] = useState('index')
+  const [loading, setLoading] = useState(true)
 
-  const menuitems = [
+  const menuItems = [
     {label: 'Index'},
-    {label: 'Show'},
-    {label: 'Edit'},
+    {label: 'Show', disabled: true},
+    {label: 'Edit', disabled: true},
     {label: 'New'}
   ]
 
   return ( 
     <div className='asset'>
+      {loading ? <Loading /> : null}
       <h2>{props.name}</h2>
-      <TabMenu model={menuitems} />
+      <TabMenu model={menuItems} />
       <br />
       <IndexView 
         tableHeaders={props.tableHeaders}
@@ -31,7 +34,6 @@ const Asset = props => {
 Asset.propTypes = {
   name: PropTypes.string,
   tableHeaders: PropTypes.array,
-  tableItems: PropTypes.array,
   requestAll: PropTypes.func
 }
 
