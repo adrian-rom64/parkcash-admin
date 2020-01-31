@@ -5,19 +5,19 @@ import IndexView from './IndexView'
 import '../Styles/Asset.css'
 import Loading from './Loading'
 import Form from './Form'
+import $ from 'jquery'
 
 const Asset = props => {
 
-  const initialMenuItems = [
+  const [loading, setLoading] = useState(false)
+  const [activeItem, setActiveItem] = useState({label: 'Index', className: 'active-tab'})
+
+  const menuItems = [
     {label: 'Index'},
     {label: 'Show', disabled: true},
     {label: 'Edit', disabled: true},
     {label: 'New'}
   ]
-
-  const [loading, setLoading] = useState(false)
-  const [activeItem, setActiveItem] = useState({label: 'Index', className: 'active-tab'})
-  const [menuItems, setMenuItems] = useState(initialMenuItems)
 
   const setTab = path => {
     setActiveItem({label: path})
