@@ -4,29 +4,62 @@ import {TabMenu} from 'primereact/tabmenu'
 import IndexView from './IndexView'
 import '../Styles/Asset.css'
 import Loading from './Loading'
+import Form from './Form'
 
 const Asset = props => {
 
-  const [view, setView] = useState('index')
-  const [loading, setLoading] = useState(true)
-
-  const menuItems = [
+  const initialMenuItems = [
     {label: 'Index'},
     {label: 'Show', disabled: true},
     {label: 'Edit', disabled: true},
     {label: 'New'}
   ]
 
+  const [loading, setLoading] = useState(false)
+  const [activeItem, setActiveItem] = useState({label: 'Index', className: 'active-tab'})
+  const [menuItems, setMenuItems] = useState(initialMenuItems)
+
+  const setTab = path => {
+    setActiveItem({label: path})
+  }
+
+
+
+  const views = {
+    Index: (
+      <IndexView 
+        tableHeaders={props.tableHeaders}
+        requestAll={props.requestAll}
+        setTab={setTab}
+      />
+    ),
+    Edit: (
+      <Form 
+        formFields={props.formFields}
+        edit={true}
+      />
+    ),
+    Show: (
+      <Form 
+        formFields={props.formFields}
+        edit={false}
+      />
+    ),
+    New: (
+      <Form 
+        formFields={props.formFields}
+        edit={true}
+      />
+    )
+  }
+
   return ( 
     <div className='asset'>
       {loading ? <Loading /> : null}
       <h2>{props.name}</h2>
-      <TabMenu model={menuItems} />
+      <TabMenu model={menuItems} activeItem={activeItem} onTabChange={e => setTab(e.value.label)} />
       <br />
-      <IndexView 
-        tableHeaders={props.tableHeaders}
-        requestAll={props.requestAll}
-      />
+      {views[activeItem.label]}
     </div>
    )
 }
@@ -34,7 +67,8 @@ const Asset = props => {
 Asset.propTypes = {
   name: PropTypes.string,
   tableHeaders: PropTypes.array,
-  requestAll: PropTypes.func
+  requestAll: PropTypes.func,
+  formFields: PropTypes.array
 }
 
 export default Asset

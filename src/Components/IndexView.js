@@ -15,7 +15,7 @@ class IndexView extends React.Component {
 	}
 	
   showRecord(record) {
-    console.log(record)
+    this.props.setTab('Show')
   }
 
   deleteRecord(record) {
@@ -26,7 +26,9 @@ class IndexView extends React.Component {
 	}
 	
 	editRecord(record) {
-		console.log('edit', record)
+		this.props.setTab('Edit')
+
+
 	}
 
 	menu = [
@@ -73,7 +75,8 @@ class IndexView extends React.Component {
 
 IndexView.propTypes = {
 	tableHeaders: PropTypes.array,
-  requestAll: PropTypes.func
+	requestAll: PropTypes.func,
+	setActiveItem: PropTypes.func
 }
 
 export default IndexView

@@ -1,0 +1,19 @@
+.form-container {
+  display: table;
+  border-spacing: 10px;
+  width: 100%;
+}
+.form-field {
+  display: table-row;
+}
+.form-label {
+  display: table-cell;
+  width: 80px;
+}
+.form-input {
+  display: table-cell;
+}
+.form-field input {
+  width: 100%;
+  max-width: 400px;
+}

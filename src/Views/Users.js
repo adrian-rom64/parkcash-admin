@@ -17,6 +17,12 @@ const Users = () => {
       {id: 3, name: 'Artur', stuff: 'hehe', created_at: '25.04.2019'},
     ]
   }
+  const formFields = [
+    {name: 'Id', slug: 'id'},
+    {name: 'Name', slug: 'name'},
+    {name: 'Stuff', slug: 'stuff'},
+    {name: 'Registered', slug: 'created_at'}
+  ]
 
   return ( 
     <div className='users'>
@@ -24,6 +30,7 @@ const Users = () => {
         name={name}
         tableHeaders={tableHeaders}
         requestAll={foo}
+        formFields={formFields}
       />
     </div>
    )
