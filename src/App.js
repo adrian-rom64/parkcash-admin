@@ -7,10 +7,10 @@ import Navbar from './Components/Navbar'
 import Menu from './Components/Menu'
 import Login from './Views/Login'
 
-
 const App = () => {
 
   const [loggedIn, setLoggedIn] = useState(false)
+
 
   const routes = routesData.map(route => (
     <Route key={route.path} path={route.path} exact={route.exact} component={route.component}/>

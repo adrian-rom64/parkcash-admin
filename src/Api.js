@@ -3,8 +3,8 @@ import Axios from 'axios'
 class Api {
   constructor () {
 
-    this.apiUrl = process.env.API_URL
-    this.token = 'dgfdgdfsg'
+    this.apiUrl = 'https://parkcash.itelab.pl/v1'
+    this.token = null
 
     this.axios = Axios.create({
       baseURL: this.apiUurl,
@@ -28,11 +28,28 @@ class Api {
 				return {code: 0, data: null}
 			}
     }
-  
+
     const availableMethods = ['get', 'post', 'delete', 'patch']
     availableMethods.forEach(method => {
       this[method] = async (url, payload) => this.request(method, url, payload)
     })
+
+    this.login = async (email, password) => {
+      const axios = Axios.create({
+        baseURL: 'https://parkcash.itelab.pl/v1',
+        timeout: 10000,
+        headers: {
+          'Content-type': 'application/json',
+          'Origin': 'localhost'
+        }
+      })
+      const data = {
+        email: email,
+        password: password
+      }
+      return await axios.post('/sessions', data)
+    } 
+  
   }
 }
 
