@@ -1,59 +1,51 @@
-import React, { useState, useEffect } from 'react'
-import '../Styles/Login.css'
+import React, { useState } from 'react'
 import {InputText} from 'primereact/inputtext'
 import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
 import {withRouter} from 'react-router'
-
-import Axios from 'axios'
+import Api from '../Api'
+import '../Styles/Login.css'
 
 const Login = props => {
 
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const login = async (email, password) => {
-    const axios = Axios.create({
-      baseURL: 'https://parkcash.itelab.pl/v1',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    const data = {
+  const loginHandler = async () => {
+    if (email === '' || password === '') return
+    const res = await Api.post('/sessions', {
       email: email,
       password: password
-    }
-    return axios.post('/sessions', data)
-  } 
-
-  const test = async () => {
-    const axios = Axios.create({
-      baseURL: 'https://parkcash.itelab.pl/v1',
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Bearer '
-      }
     })
-    return axios.get('/users')
+    if (res.code === 201) {
+      localStorage.setItem('token', res.data.token)
+      props.history.push('/')
+    } else {
+      alert('Wrong credentials')
+    }
   }
 
-  const loginHandler = async () => {
-    const res = await login(username, password)
-    console.log(res)
-    if (res.status === 201) alert('success')
-    else alert('error')
+  const keyHandler = event => {
+    if (event.key === 'Enter') loginHandler()
   }
-
-  useEffect(() => {
-    props.history.push('/login')
-  }, []) // eslint-disable-line
 
   return ( 
     <div className='login'>
       <div className='login-box'>
         <Card>
-          <InputText placeholder={global.tr('username')} value={username} onChange={(e) => setUsername(e.target.value)}/>
-          <InputText placeholder={global.tr('password')} type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <InputText
+            placeholder={global.tr('email')}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyPress={keyHandler}
+          />
+          <InputText
+            placeholder={global.tr('password')}
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={keyHandler}
+          />
           <Button onClick={loginHandler} label={global.tr('login-button')} />
         </Card>
       </div>

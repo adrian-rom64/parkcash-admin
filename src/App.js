@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Styles/App.css'
 import {Switch, Route} from 'react-router'
 import routesData from './Data/Routes'
+import {withRouter} from 'react-router'
 
 import Navbar from './Components/Navbar'
 import Menu from './Components/Menu'
@@ -9,7 +10,8 @@ import Login from './Views/Login'
 
 const App = () => {
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const loggedIn = !!localStorage.getItem('token')
+
 
   const routes = routesData.map(route => (
     <Route key={route.path} path={route.path} exact={route.exact} component={route.component}/>
@@ -32,4 +34,4 @@ const App = () => {
   )
 }
 
-export default App
+export default withRouter(App)

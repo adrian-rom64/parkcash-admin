@@ -9,16 +9,16 @@ const SideMenu = props => {
 
   const items = [
     {
-      label: 'Assets',
+      label: global.tr('menu-assets'),
       items: [
-        {label: 'Users', command: () => goto('/users')},
-        {label: 'Cars', command: () => goto('/cars')}
+        {label: global.tr('menu-users'), command: () => goto('/users')},
+        {label: global.tr('menu-devices'), command: () => goto('/devices')}
       ]
     },
     {
-      label: 'Account',
+      label: global.tr('menu-account'),
       items: [
-        {label: 'Log out', command: () => goto('/logout')}
+        {label: global.tr('menu-logout'), command: () => goto('/logout')}
       ]
     }
   ]

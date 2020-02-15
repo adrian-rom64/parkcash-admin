@@ -1,10 +1,10 @@
 import Users from '../Views/Users'
+import Logout from '../Views/Logout'
+import Devices from '../Views/Devices'
 
 export default [
-  {path: '/users/:id/edit', exact: true, component: null},
-  {path: '/users/:id/delete', exact: true, component: null},
-  {path: '/users/:id', exact: true, component: null},
-  {path: '/users/new', exact: true, component: null},
+  {path: '/logout', exact: true, component: Logout},
+  {path: '/devices', exact: true, component: Devices},
   {path: '/users', exact: true, component: Users},
 ]
 
