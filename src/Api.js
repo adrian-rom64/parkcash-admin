@@ -39,8 +39,7 @@ class Api {
         baseURL: 'https://parkcash.itelab.pl/v1',
         timeout: 10000,
         headers: {
-          'Content-type': 'application/json',
-          'Origin': 'localhost'
+          'Content-type': 'application/json'
         }
       })
       const data = {

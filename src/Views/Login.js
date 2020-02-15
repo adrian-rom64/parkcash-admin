@@ -12,8 +12,8 @@ const Login = props => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const login = () => {
-    const res = Api.login('user1@parkcash.io', 'f1242Ydo')
+  const login = async () => {
+    const res = await Api.login('user1@parkcash.io', 'f1242Ydo')
     console.log(res)
     if (res.code === 200) alert('success')
     else alert('error')
