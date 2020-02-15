@@ -12,10 +12,7 @@ const Login = props => {
   const [password, setPassword] = useState('')
 
   const login = async () => {
-    const res = await Api.post('/sessions', {
-      email: email,
-      password: password
-    })
+    const res = await Api.login(email, password)
     console.log(res)
   }
 

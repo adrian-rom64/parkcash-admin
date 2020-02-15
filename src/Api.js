@@ -70,4 +70,19 @@ export default class Api {
   static post = async (url, payload) => this.request('post', url, payload)
   static delete = async (url, payload) => this.request('delete', url, payload)
   static patch = async (url, payload) => this.request('patch', url, payload)
+
+  static login = async (email, password) => {
+    const axios = Axios.create({
+      baseURL: 'https://parkcash.itelab.pl/v1',
+      timeout: 10000,
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    const data = {
+      email: email,
+      password: password
+    }
+    return await axios.post('/sessions', data)
+  } 
 }
