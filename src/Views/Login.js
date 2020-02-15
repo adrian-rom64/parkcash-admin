@@ -5,15 +5,43 @@ import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
 import {withRouter} from 'react-router'
 
-const Api = require('../Api').default.getInstance()
+// const Api = require('../Api').default.getInstance()
+import Axios from 'axios'
 
 const Login = props => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  const login2 = async (email, password) => {
+    const axios = Axios.create({
+      baseURL: 'https://parkcash.itelab.pl/v1',
+      timeout: 10000,
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    const data = {
+      email: email,
+      password: password
+    }
+    return await axios.post('/sessions', data)
+  } 
+
+  const login3 = async () => {
+    const axios = Axios.create({
+      baseURL: 'https://parkcash.itelab.pl/v1',
+      timeout: 10000,
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MTMzMTczODF9.UeULpMeI8eQ_tQU6-1-u_u5h1PtG86o52NbqpTmDhbE'
+      }
+    })
+    return await axios.get('/users')
+  }
+
   const login = async () => {
-    const res = await Api.login('user1@parkcash.io', 'f1242Ydo')
+    const res = await login2(username, password)
     console.log(res)
     if (res.code === 200) alert('success')
     else alert('error')
