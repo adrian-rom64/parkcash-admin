@@ -4,16 +4,19 @@ import {InputText} from 'primereact/inputtext'
 import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
 import {withRouter} from 'react-router'
-import Api from '../Api'
+
+const Api = require('../Api').default.getInstance()
 
 const Login = props => {
 
-  const [email, setUsername] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const login = async () => {
-    const res = await Api.login(email, password)
+    const res = await Api.login('user1@parkcash.io', 'f1242Ydo')
     console.log(res)
+    if (res.code === 200) alert('success')
+    else alert('error')
   }
 
   useEffect(() => {
@@ -24,7 +27,7 @@ const Login = props => {
     <div className='login'>
       <div className='login-box'>
         <Card>
-          <InputText placeholder={global.tr('email')} value={email} onChange={(e) => setUsername(e.target.value)}/>
+          <InputText placeholder={global.tr('username')} value={username} onChange={(e) => setUsername(e.target.value)}/>
           <InputText placeholder={global.tr('password')} type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
           <Button onClick={login} label={global.tr('login-button')} />
         </Card>
